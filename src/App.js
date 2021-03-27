@@ -5,13 +5,15 @@ import API from "./components/API";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
-  const [detail, setDetail] = useState();
+  const [detail, setDetail] = useState([]);
   const [showPokemon, setShowPokemon] = useState(false);
+  const [sprites, setSprites] = useState("");
 
   async function getPokeDetails(x) {
     setShowPokemon(true);
     const detail = await API.getPokeDetails(x);
-    console.log(detail);
+    console.log(detail.data.sprites);
+    setSprites(detail.data.sprites.front_shiny);
   }
 
   useEffect(() => {
@@ -39,7 +41,14 @@ function App() {
           </p>
         ))}
       </ul>
-      <div>{showPokemon ? <p>{detail}</p> : "Click a Pokemon!"}</div>
+
+      <div>
+        {showPokemon ? (
+          <img alt="pokemon" src={sprites} />
+        ) : (
+          <h1>Click a Pokemon for more Details</h1>
+        )}
+      </div>
     </>
   );
 }
