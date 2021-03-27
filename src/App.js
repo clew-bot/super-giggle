@@ -6,6 +6,11 @@ import API from "./components/API";
 function App() {
   const [pokemon, setPokemon] = useState([]);
 
+  async function getPokeDetails(x) {
+    const detail = await API.getPokeDetails(x);
+    console.log(detail);
+  }
+
   useEffect(() => {
     const fetchPokemon = async () => {
       const res = await API.getPokemon();
@@ -19,7 +24,13 @@ function App() {
   return (
     <ul className="list-group mb-4 text-center">
       {pokemon.map((post) => (
-        <p key={post.name} className="list-group-item">
+        <p
+          onClick={() => {
+            getPokeDetails(post.name);
+          }}
+          key={post.name}
+          className="list-group-item"
+        >
           {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
         </p>
       ))}
