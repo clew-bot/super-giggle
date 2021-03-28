@@ -5,16 +5,16 @@ import API from "./components/API";
 import Pagination from "./components/Pagination";
 
 function App() {
-  const [pokemon, setPokemon] = useState([]);
   const [detail, setDetail] = useState([]);
   const [showPokemon, setShowPokemon] = useState(false);
   const [sprites, setSprites] = useState("");
   const [ability, setAbility] = useState("");
   const [baseStat, setBaseStat] = useState();
   const [postsPerPage] = useState(10);
+  const [pokemon, setPokemon] = useState([]);
 
   //pagination//
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(5);
 
   //Get everything about the pokemon//
   async function getPokeDetails(x) {
@@ -35,16 +35,19 @@ function App() {
     };
     fetchPokemon();
   }, []);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const indexOfLastPost = currentPage * postsPerPage; //10
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; //0
   const currentPosts = pokemon.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
       <ul className="list-group mb-4 text-center">
-        {pokemon.map((post) => (
+        {currentPosts.map((post) => (
           <p
+            posts={currentPosts}
             onClick={() => {
               getPokeDetails(post.name);
               setDetail(post.name.charAt(0).toUpperCase() + post.name.slice(1));
@@ -55,6 +58,11 @@ function App() {
             {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
           </p>
         ))}
+        <Pagination
+          paginate={paginate}
+          totalPosts={pokemon.length}
+          postsPerPage={postsPerPage}
+        />
       </ul>
 
       <div>
@@ -71,11 +79,6 @@ function App() {
         ) : (
           <h1>Click a Pokemon for more Details</h1>
         )}
-        <Pagination
-          paginate={paginate}
-          totalPosts={pokemon.length}
-          postsPerPage={postsPerPage}
-        />
       </div>
     </>
   );
