@@ -15,15 +15,23 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       <img src={sprite.back_shiny} alt="back shiny" />
       <br />
       <h1>This Pokemon has the following base stats:</h1>
-      <tr>
+      <tr
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          border: "solid 2px black",
+          marginBottom: "5vw",
+        }}
+      >
         {baseStat &&
           baseStat.map((stats) => {
             return (
-              <div>
-                <h1>{stats.stat.name}</h1>
+              <tr>
+                <h3>{stats.stat.name}</h3>
                 <br />
-                <h3>{stats.base_stat}</h3>
-              </div>
+                <td>{stats.base_stat}</td>
+              </tr>
             );
           })}
       </tr>
