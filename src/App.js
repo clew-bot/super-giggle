@@ -11,15 +11,13 @@ function App() {
   const [ability, setAbility] = useState("");
   const [baseStat, setBaseStat] = useState();
 
+  //Get everything about the pokemon//
   async function getPokeDetails(x) {
     setShowPokemon(true);
     const detail = await API.getPokeDetails(x);
-    console.log(detail.data.sprites);
     setSprites(detail.data.sprites);
     setAbility(detail.data.abilities);
-    console.log(setAbility);
     setBaseStat(detail.data.stats);
-    console.log(detail.data.stats);
   }
 
   useEffect(() => {
@@ -57,7 +55,6 @@ function App() {
               ability={ability}
               baseStat={baseStat}
             />
-            {/* <img alt="pokemon" src={sprites} /> */}
           </>
         ) : (
           <h1>Click a Pokemon for more Details</h1>

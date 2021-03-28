@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
+  const [dreamworld, setDreamWorld] = useState();
   return (
     <>
       <h1>Dectecting: {pokename}</h1>
@@ -10,9 +11,18 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
         {ability &&
           ability.map((abilityObject) => abilityObject.ability.name).join(", ")}
       </h3>
-
+      <img src={sprite.front_default} alt="front default" />
+      <img src={sprite.back_default} alt="back default" />
       <img src={sprite.front_shiny} alt="front shiny" />
       <img src={sprite.back_shiny} alt="back shiny" />
+      {ability ? (
+        <img
+          src={sprite.other.dream_world.front_default}
+          alt="dream world spritee"
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
       <br />
       <h1>This Pokemon has the following base stats:</h1>
       <tr
