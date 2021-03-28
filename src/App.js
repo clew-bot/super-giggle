@@ -9,6 +9,7 @@ function App() {
   const [showPokemon, setShowPokemon] = useState(false);
   const [sprites, setSprites] = useState("");
   const [ability, setAbility] = useState("");
+  const [baseStat, setBaseStat] = useState();
 
   async function getPokeDetails(x) {
     setShowPokemon(true);
@@ -17,6 +18,8 @@ function App() {
     setSprites(detail.data.sprites);
     setAbility(detail.data.abilities);
     console.log(setAbility);
+    setBaseStat(detail.data.stats);
+    console.log(detail.data.stats);
   }
 
   useEffect(() => {
@@ -48,8 +51,13 @@ function App() {
       <div>
         {showPokemon ? (
           <>
-            <PokemonList sprite={sprites} pokename={detail} ability={ability} />
-            <img alt="pokemon" src={sprites} />
+            <PokemonList
+              sprite={sprites}
+              pokename={detail}
+              ability={ability}
+              baseStat={baseStat}
+            />
+            {/* <img alt="pokemon" src={sprites} /> */}
           </>
         ) : (
           <h1>Click a Pokemon for more Details</h1>
