@@ -6,6 +6,10 @@ export default {
   getPokemon: function (query) {
     return axios.get("https://pokeapi.co/api/v2/pokemon/");
   },
+
+  getMorePokemon: function () {
+    return axios.get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=200");
+  },
   getPokeDetails: function (poke) {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${poke}/`);
   },

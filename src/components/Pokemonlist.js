@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
-  const [dreamworld, setDreamWorld] = useState();
   return (
     <>
       <h1>Dectecting: {pokename}</h1>
@@ -18,7 +17,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       {ability ? (
         <img
           src={sprite.other.dream_world.front_default}
-          alt="dream world spritee"
+          alt="dream world sprite"
         />
       ) : (
         <p>Loading...</p>
