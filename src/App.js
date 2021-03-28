@@ -8,12 +8,15 @@ function App() {
   const [detail, setDetail] = useState([]);
   const [showPokemon, setShowPokemon] = useState(false);
   const [sprites, setSprites] = useState("");
+  const [ability, setAbility] = useState("");
 
   async function getPokeDetails(x) {
     setShowPokemon(true);
     const detail = await API.getPokeDetails(x);
     console.log(detail.data.sprites);
-    setSprites(detail.data.sprites.front_shiny);
+    setSprites(detail.data.sprites);
+    setAbility(detail.data.abilities);
+    console.log(setAbility);
   }
 
   useEffect(() => {
@@ -32,7 +35,7 @@ function App() {
           <p
             onClick={() => {
               getPokeDetails(post.name);
-              setDetail(post.name);
+              setDetail(post.name.charAt(0).toUpperCase() + post.name.slice(1));
             }}
             key={post.name}
             className="list-group-item"
@@ -44,7 +47,10 @@ function App() {
 
       <div>
         {showPokemon ? (
-          <img alt="pokemon" src={sprites} />
+          <>
+            <PokemonList sprite={sprites} pokename={detail} ability={ability} />
+            <img alt="pokemon" src={sprites} />
+          </>
         ) : (
           <h1>Click a Pokemon for more Details</h1>
         )}
