@@ -10,14 +10,6 @@ const PokeSearch = ({ getPokemon }) => {
   function handleFormSubmit(event) {
     event.preventDefault();
     getPokemon(formObject.pokeName);
-    // event.preventDefault();
-    // if (formObject.pokeName) {
-    //   API.pokeSearch({
-    //     pokemon: formObject.pokeName,
-    //   })
-    //     .then((res) => onSubmit(formObject.pokeName))
-    //     .catch((err) => console.log(err));
-    // }
   }
   return (
     <form>

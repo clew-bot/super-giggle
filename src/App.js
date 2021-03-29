@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const fetchPokemon = async () => {
       const res = await API.getMorePokemon();
-      console.log(res.data.results);
+      // console.log(res.data.results);
       setPokemon(res.data.results);
     };
     fetchPokemon();
@@ -39,7 +39,7 @@ function App() {
   const indexOfLastPost = currentPage * postsPerPage; //10
   const indexOfFirstPost = indexOfLastPost - postsPerPage; //0
   const currentPosts = pokemon.slice(indexOfFirstPost, indexOfLastPost);
-  console.log(currentPosts);
+  // console.log(currentPosts);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (

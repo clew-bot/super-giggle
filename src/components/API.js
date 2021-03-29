@@ -16,4 +16,7 @@ export default {
   pokeSearch: function ({ pokemon }) {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
   },
+  getAbility: function (ability) {
+    return axios.get(`https://pokeapi.co/api/v2/ability/${ability}/`);
+  },
 };

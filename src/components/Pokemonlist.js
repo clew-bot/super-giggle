@@ -1,20 +1,31 @@
 import React, { useState } from "react";
+import API from "../components/API";
 // import PokeSearch from "../components/PokeSearch";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
+  async function getAbilities(ability) {
+    const res = await API.getAbility(ability);
+    console.log(res);
+  }
   // const [defaultPoke] = useState("Mewtwo");
 
   // function getPokemon(term) {
   //   console.log(term);
   // }
-
+  console.log(ability);
   return (
     <>
       {/* <PokeSearch getPokemon={getPokemon} /> */}
       <h1>Dectecting: {pokename}</h1>
       <h2>The Pokemon {pokename} has the following abilities:</h2>
       {/* <p>{formatAbilities(ability)}</p> */}
-      <h3>
+
+      <h3
+        onClick={() => {
+          console.log(ability[0].ability.name);
+          getAbilities(ability[0].ability.name);
+        }}
+      >
         {ability &&
           ability.map((abilityObject) => abilityObject.ability.name).join(", ")}
       </h3>
