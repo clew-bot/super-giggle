@@ -13,4 +13,7 @@ export default {
   getPokeDetails: function (poke) {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${poke}/`);
   },
+  pokeSearch: function ({ pokemon }) {
+    return axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
+  },
 };

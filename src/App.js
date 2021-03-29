@@ -3,6 +3,7 @@ import PokemonList from "./components/Pokemonlist";
 import React, { useState, useEffect } from "react";
 import API from "./components/API";
 import Pagination from "./components/Pagination";
+import PokeSearch from "./components/PokeSearch";
 
 function App() {
   const [detail, setDetail] = useState([]);
@@ -58,6 +59,7 @@ function App() {
             {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
           </p>
         ))}
+        <PokeSearch />
         <Pagination
           paginate={paginate}
           totalPosts={pokemon.length}
