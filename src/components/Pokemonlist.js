@@ -6,6 +6,9 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
   async function getAbilities(ability) {
     const res = await API.getAbility(ability);
     console.log(res);
+    for (const property in res.name) {
+      console.log(`${property}: ${res.name[property]}`);
+    }
   }
   // const [defaultPoke] = useState("Mewtwo");
 
@@ -19,11 +22,19 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       <h1>Dectecting: {pokename}</h1>
       <h2>The Pokemon {pokename} has the following abilities:</h2>
       {/* <p>{formatAbilities(ability)}</p> */}
-
+      {/* 
+      <h1>
+        {for(const abils in ability){
+          console.log(abils)
+        }}
+      </h1> */}
       <h3
         onClick={() => {
-          console.log(ability[0].ability.name);
-          getAbilities(ability[0].ability.name);
+          ability.map((abils) => {
+            return getAbilities(abils.ability.name);
+          });
+          // console.log(ability[0].ability.name);
+          // getAbilities(ability[0].ability.name && ability[1].ability.name);
         }}
       >
         {ability &&
