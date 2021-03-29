@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "./API";
 
-const PokeSearch = () => {
+const PokeSearch = ({ getPokemon }) => {
   const [formObject, setFormObject] = useState({});
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -9,13 +9,15 @@ const PokeSearch = () => {
   }
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.pokeName) {
-      API.pokeSearch({
-        pokemon: formObject.pokeName,
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-    }
+    getPokemon(formObject.pokeName);
+    // event.preventDefault();
+    // if (formObject.pokeName) {
+    //   API.pokeSearch({
+    //     pokemon: formObject.pokeName,
+    //   })
+    //     .then((res) => onSubmit(formObject.pokeName))
+    //     .catch((err) => console.log(err));
+    // }
   }
   return (
     <form>

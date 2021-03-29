@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+// import PokeSearch from "../components/PokeSearch";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
+  // const [defaultPoke] = useState("Mewtwo");
+
+  // function getPokemon(term) {
+  //   console.log(term);
+  // }
+
   return (
     <>
+      {/* <PokeSearch getPokemon={getPokemon} /> */}
       <h1>Dectecting: {pokename}</h1>
       <h2>The Pokemon {pokename} has the following abilities:</h2>
       {/* <p>{formatAbilities(ability)}</p> */}
@@ -37,11 +45,11 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
         {baseStat &&
           baseStat.map((stats) => {
             return (
-              <tr>
-                <h3>{stats.stat.name}</h3>
-                <br />
-                <td>{stats.base_stat}</td>
-              </tr>
+              <>
+                <td key={stats.stat.name}>{stats.stat.name}</td>
+
+                <td key={stats.base_stat}>{stats.base_stat}</td>
+              </>
             );
           })}
       </tr>

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import API from "./components/API";
 import Pagination from "./components/Pagination";
 import PokeSearch from "./components/PokeSearch";
-
 function App() {
   const [detail, setDetail] = useState([]);
   const [showPokemon, setShowPokemon] = useState(false);
@@ -45,6 +44,7 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
+      <PokeSearch getPokemon={getPokeDetails} />
       <ul className="list-group mb-4 text-center">
         {currentPosts.map((post) => (
           <p
@@ -59,7 +59,7 @@ function App() {
             {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
           </p>
         ))}
-        <PokeSearch />
+
         <Pagination
           paginate={paginate}
           totalPosts={pokemon.length}
