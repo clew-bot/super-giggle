@@ -52,7 +52,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       </h1> */}
       {ability &&
         ability.map((abilityObject) => (
-          <button
+          <h2
             onClick={() => {
               console.log(abilityObject.ability.name);
 
@@ -60,10 +60,14 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
               ability.map(async (abils) => {
                 // return getAbilities(abils.ability.name);
                 console.log(abils.ability.name);
-                const jj = await API.getAbility(abils.ability.name);
-                console.log(jj);
-                console.log(jj.data.effect_entries[1].effect);
-                return setAbilitee(jj.data.effect_entries[1].effect);
+                try {
+                  const jj = await API.getAbility(abils.ability.name);
+                  console.log(jj);
+                  console.log(jj.data.effect_entries[1].effect);
+                  return setAbilitee(jj.data.effect_entries[1].effect);
+                } catch {
+                  console.log("Fuck off");
+                }
               });
               // console.log(ability[0].ability.name);
               // getAbilities(ability[0].ability.name && ability[1].ability.name);
@@ -75,7 +79,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
               abilities={abilityObject.ability.name}
               otherAbilz={abilitee}
             />
-          </button>
+          </h2>
         ))}
 
       {/* {abilitee} */}

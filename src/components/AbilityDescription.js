@@ -9,7 +9,7 @@ const AbilityDescription = ({ abilities, otherAbilz }) => {
     setDescription(res.data.effect_entries[1].effect);
   }
   getAbilityDescription(abilities);
-  return <h1>{description}</h1>;
+  return <h3>{description}</h3>;
 };
 
 export default AbilityDescription;

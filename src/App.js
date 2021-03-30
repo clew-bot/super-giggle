@@ -20,7 +20,7 @@ function App() {
   async function getPokeDetails(x) {
     setShowPokemon(true);
     const detail = await API.getPokeDetails(x);
-
+    setDetail(x);
     setSprites(detail.data.sprites);
     setAbility(detail.data.abilities);
 
