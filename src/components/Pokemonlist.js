@@ -3,12 +3,22 @@ import API from "../components/API";
 // import PokeSearch from "../components/PokeSearch";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
+  const [firstAbility, setFirstAbility] = useState("");
+  const [secondAbility, setSecondAbility] = useState("");
+  //set ability description in state //
+  // const [abilities, abilityDescription] = useState("");
   async function getAbilities(ability) {
     const res = await API.getAbility(ability);
     console.log(res);
-    for (const property in res.name) {
-      console.log(`${property}: ${res.name[property]}`);
-    }
+    // abilityDescription(res);
+    // console.log(abilityDescription);
+    setFirstAbility(res.data.effect_entries[1].effect);
+    setSecondAbility(res.data.effect_entries[1].effect);
+    console.log(res.data.effect_entries[1].effect);
+
+    // for (const property in res.name) {
+    //   console.log(`${property}: ${res.name[property]}`);
+    // }
   }
   // const [defaultPoke] = useState("Mewtwo");
 
@@ -28,18 +38,23 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
           console.log(abils)
         }}
       </h1> */}
-      <h3
-        onClick={() => {
-          ability.map((abils) => {
-            return getAbilities(abils.ability.name);
-          });
-          // console.log(ability[0].ability.name);
-          // getAbilities(ability[0].ability.name && ability[1].ability.name);
-        }}
-      >
-        {ability &&
-          ability.map((abilityObject) => abilityObject.ability.name).join(", ")}
-      </h3>
+      {ability &&
+        ability.map((abilityObject) => (
+          <h3
+            onClick={() => {
+              console.log(abilityObject);
+              ability.map((abils) => {
+                return getAbilities(abils.ability.name);
+              });
+              // console.log(ability[0].ability.name);
+              // getAbilities(ability[0].ability.name && ability[1].ability.name);
+            }}
+          >
+            {abilityObject.ability.name}
+            {/* abilityObject.ability.name.join(", ") */}
+            <h1> {firstAbility}</h1>
+          </h3>
+        ))}
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
       {ability ? (
