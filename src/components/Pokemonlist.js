@@ -5,7 +5,6 @@ import AbilityDescription from "../components/AbilityDescription";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
   const [abilitee, setAbilitee] = useState([]);
-  const [abilityName, setAbilityName] = useState([]);
 
   //set ability description in state //
   // const [abilities, abilityDescription] = useState("");
