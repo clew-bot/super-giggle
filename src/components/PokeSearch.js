@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import API from "./API";
 
 const PokeSearch = ({ getPokemon }) => {
   const [formObject, setFormObject] = useState({});

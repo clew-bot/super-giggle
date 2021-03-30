@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import API from "../components/API";
 // import PokeSearch from "../components/PokeSearch";
+import AbilityDescription from "../components/AbilityDescription";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
-  const [firstAbility, setFirstAbility] = useState("");
-  const [secondAbility, setSecondAbility] = useState("");
+  const [abilitee, setAbilitee] = useState([]);
+  const [abilityName, setAbilityName] = useState([]);
+
   //set ability description in state //
   // const [abilities, abilityDescription] = useState("");
+
   async function getAbilities(ability) {
     const res = await API.getAbility(ability);
     console.log(res);
     // abilityDescription(res);
     // console.log(abilityDescription);
-    setFirstAbility(res.data.effect_entries[1].effect);
-    setSecondAbility(res.data.effect_entries[1].effect);
+
     console.log(res.data.effect_entries[1].effect);
+    setAbilitee(res.data.effect_entries[1].effect);
+
+    // abilityDescription(res.data.effect_entries[1].effect);
+    // for (const a in abilityDescription(res.data.effect_entries[1].effect)) {
+    //   console.log(a);
+    //   return abilitee(a);
+    // }
+    // setSecondAbility(res.data.effect_entries[1].effect);
+    // console.log(abilityDescription);
+    console.log(res.data.effect_entries);
 
     // for (const property in res.name) {
     //   console.log(`${property}: ${res.name[property]}`);
@@ -32,7 +44,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       <h1>Dectecting: {pokename}</h1>
       <h2>The Pokemon {pokename} has the following abilities:</h2>
       {/* <p>{formatAbilities(ability)}</p> */}
-      {/* 
+      {/*
       <h1>
         {for(const abils in ability){
           console.log(abils)
@@ -40,21 +52,34 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       </h1> */}
       {ability &&
         ability.map((abilityObject) => (
-          <h3
+          <button
             onClick={() => {
+              console.log(abilityObject.ability.name);
+
               console.log(abilityObject);
-              ability.map((abils) => {
-                return getAbilities(abils.ability.name);
+              ability.map(async (abils) => {
+                // return getAbilities(abils.ability.name);
+                console.log(abils.ability.name);
+                const jj = await API.getAbility(abils.ability.name);
+                console.log(jj);
+                console.log(jj.data.effect_entries[1].effect);
+                return setAbilitee(jj.data.effect_entries[1].effect);
               });
               // console.log(ability[0].ability.name);
               // getAbilities(ability[0].ability.name && ability[1].ability.name);
             }}
           >
             {abilityObject.ability.name}
-            {/* abilityObject.ability.name.join(", ") */}
-            <h1> {firstAbility}</h1>
-          </h3>
+            <br />
+            <AbilityDescription
+              abilities={abilityObject.ability.name}
+              otherAbilz={abilitee}
+            />
+          </button>
         ))}
+
+      {/* {abilitee} */}
+
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
       {ability ? (
