@@ -5,6 +5,7 @@ import AbilityDescription from "../components/AbilityDescription";
 
 const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
   const [abilitee, setAbilitee] = useState([]);
+  const [descriptions, setDescriptions] = useState(false);
 
   //set ability description in state //
   // const [abilities, abilityDescription] = useState("");
@@ -54,7 +55,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
           <h2
             onClick={() => {
               console.log(abilityObject.ability.name);
-
+              setDescriptions(true);
               console.log(abilityObject);
               ability.map(async (abils) => {
                 // return getAbilities(abils.ability.name);
@@ -74,10 +75,14 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
           >
             {abilityObject.ability.name}
             <br />
-            <AbilityDescription
-              abilities={abilityObject.ability.name}
-              otherAbilz={abilitee}
-            />
+            {descriptions ? (
+              <AbilityDescription
+                abilities={abilityObject.ability.name}
+                otherAbilz={abilitee}
+              />
+            ) : (
+              <p>Click an ability for more details</p>
+            )}
           </h2>
         ))}
 

@@ -2,8 +2,9 @@ import "./App.css";
 import PokemonList from "./components/Pokemonlist";
 import React, { useState, useEffect } from "react";
 import API from "./components/API";
-import Pagination from "./components/Pagination";
+import Paginations from "./components/Pagination";
 import PokeSearch from "./components/PokeSearch";
+import Pagination from "@material-ui/lab/Pagination";
 function App() {
   const [detail, setDetail] = useState([]);
   const [showPokemon, setShowPokemon] = useState(false);
@@ -60,7 +61,7 @@ function App() {
           </p>
         ))}
 
-        <Pagination
+        <Paginations
           paginate={paginate}
           totalPosts={pokemon.length}
           postsPerPage={postsPerPage}
