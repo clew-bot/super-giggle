@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import API from "../components/API";
 // import PokeSearch from "../components/PokeSearch";
 import AbilityDescription from "../components/AbilityDescription";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import PokemonTypes from "./PokemonTypes";
 
-const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
+const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
   const [abilitee, setAbilitee] = useState([]);
   const [descriptions, setDescriptions] = useState(false);
 
@@ -41,7 +44,9 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
   return (
     <>
       {/* <PokeSearch getPokemon={getPokemon} /> */}
-      <h1>Dectecting: {pokename}</h1>
+      <h1>Dectecting: {pokename}</h1>{" "}
+      {poketype && poketype.map((typez) => <h2>{typez.type.name}</h2>)}
+      {/* <PokemonTypes types={poketype} /> */}
       <h2>The Pokemon {pokename} has the following abilities:</h2>
       {/* <p>{formatAbilities(ability)}</p> */}
       {/*
@@ -85,9 +90,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
             )}
           </h2>
         ))}
-
       {/* {abilitee} */}
-
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
       {ability ? (
@@ -100,7 +103,6 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
       )}
       <img src={sprite.front_shiny} alt="front shiny" />
       <img src={sprite.back_shiny} alt="back shiny" />
-
       <br />
       <h1>This Pokemon has the following base stats:</h1>
       <tr
@@ -118,7 +120,11 @@ const PokemonList = ({ sprite, pokename, ability, baseStat }) => {
               <>
                 <td key={stats.stat.name}>{stats.stat.name}</td>
 
-                <td key={stats.base_stat}>{stats.base_stat}</td>
+                <CircularProgressbar
+                  maxValue={255}
+                  value={stats.base_stat}
+                  text={stats.base_stat}
+                />
               </>
             );
           })}

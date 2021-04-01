@@ -11,8 +11,9 @@ function App() {
   const [sprites, setSprites] = useState("");
   const [ability, setAbility] = useState("");
   const [baseStat, setBaseStat] = useState();
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(15);
   const [pokemon, setPokemon] = useState([]);
+  const [types, setTypes] = useState();
 
   //pagination//
   const [currentPage, setCurrentPage] = useState(5);
@@ -24,7 +25,9 @@ function App() {
     setDetail(x);
     setSprites(detail.data.sprites);
     setAbility(detail.data.abilities);
-
+    console.log(detail.data.types);
+    setTypes(detail.data.types);
+    console.log(types);
     setBaseStat(detail.data.stats);
   }
 
@@ -45,43 +48,49 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
-      <PokeSearch getPokemon={getPokeDetails} />
-      <ul className="list-group mb-4 text-center">
-        {currentPosts.map((post) => (
-          <p
-            posts={currentPosts}
-            onClick={() => {
-              getPokeDetails(post.name);
-              setDetail(post.name.charAt(0).toUpperCase() + post.name.slice(1));
-            }}
-            key={post.name}
-            className="list-group-item"
-          >
-            {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
-          </p>
-        ))}
+      <PokeSearch getPokemon={getPokeDetails} style />
+      <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+        <ul className="list-group mb-4 text-center">
+          {currentPosts.map((post) => (
+            <h6
+              href="/#"
+              posts={currentPosts}
+              onClick={() => {
+                getPokeDetails(post.name);
+                setDetail(
+                  post.name.charAt(0).toUpperCase() + post.name.slice(1)
+                );
+              }}
+              key={post.name}
+              className="list-group-item"
+            >
+              {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
+            </h6>
+          ))}
 
-        <Paginations
-          paginate={paginate}
-          totalPosts={pokemon.length}
-          postsPerPage={postsPerPage}
-        />
-      </ul>
+          <Paginations
+            paginate={paginate}
+            totalPosts={pokemon.length}
+            postsPerPage={postsPerPage}
+          />
+        </ul>
 
-      <div>
-        {showPokemon ? (
-          <>
-            <PokemonList
-              sprite={sprites}
-              pokename={detail}
-              ability={ability}
-              baseStat={baseStat}
-            />
-            {/* <img alt="pokemon" src={sprites} /> */}
-          </>
-        ) : (
-          <h1>Click a Pokemon for more Details</h1>
-        )}
+        <div>
+          {showPokemon ? (
+            <>
+              <PokemonList
+                sprite={sprites}
+                pokename={detail}
+                ability={ability}
+                baseStat={baseStat}
+                poketype={types}
+              />
+              {/* <img alt="pokemon" src={sprites} /> */}
+            </>
+          ) : (
+            <h1>Click a Pokemon for more Details</h1>
+          )}
+        </div>
       </div>
     </>
   );

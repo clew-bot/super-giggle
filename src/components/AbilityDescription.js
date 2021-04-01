@@ -5,7 +5,7 @@ const AbilityDescription = ({ abilities, otherAbilz }) => {
   console.log(otherAbilz);
   async function getAbilityDescription(abilities) {
     const res = await API.getAbility(abilities);
-    console.log(res);
+
     setDescription(res.data.effect_entries[1].effect);
   }
   getAbilityDescription(abilities);
