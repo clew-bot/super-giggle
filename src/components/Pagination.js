@@ -23,8 +23,6 @@ const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
       <ul
         className="pagination"
         style={{
-          display: "flex",
-          flexDirection: "row",
           justifyContent: "space-evenly",
           border: "solid 2px black",
           fontFamily: "helveltica",

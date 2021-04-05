@@ -4,93 +4,79 @@ import API from "../components/API";
 import AbilityDescription from "../components/AbilityDescription";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import PokemonTypes from "./PokemonTypes";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Paper from "@material-ui/core/Paper";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    },
+  },
+  abilities: {
+    display: "flex",
+    justifyContent: "center",
+    textAlign: "center",
+    marginBottom: "100px",
+  },
+}));
 
 const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
+  const classes = useStyles();
   const [abilitee, setAbilitee] = useState([]);
   const [descriptions, setDescriptions] = useState(false);
 
-  //set ability description in state //
-  // const [abilities, abilityDescription] = useState("");
-
-  async function getAbilities(ability) {
-    const res = await API.getAbility(ability);
-    console.log(res);
-    // abilityDescription(res);
-    // console.log(abilityDescription);
-
-    console.log(res.data.effect_entries[1].effect);
-    setAbilitee(res.data.effect_entries[1].effect);
-
-    // abilityDescription(res.data.effect_entries[1].effect);
-    // for (const a in abilityDescription(res.data.effect_entries[1].effect)) {
-    //   console.log(a);
-    //   return abilitee(a);
-    // }
-    // setSecondAbility(res.data.effect_entries[1].effect);
-    // console.log(abilityDescription);
-    console.log(res.data.effect_entries);
-
-    // for (const property in res.name) {
-    //   console.log(`${property}: ${res.name[property]}`);
-    // }
-  }
-  // const [defaultPoke] = useState("Mewtwo");
-
-  // function getPokemon(term) {
-  //   console.log(term);
-  // }
-  console.log(ability);
   return (
-    <>
-      {/* <PokeSearch getPokemon={getPokemon} /> */}
-      <h1>Dectecting: {pokename}</h1>{" "}
-      {poketype && poketype.map((typez) => <h2>{typez.type.name}</h2>)}
-      {/* <PokemonTypes types={poketype} /> */}
-      <h2>The Pokemon {pokename} has the following abilities:</h2>
-      {/* <p>{formatAbilities(ability)}</p> */}
-      {/*
+    <div>
       <h1>
-        {for(const abils in ability){
-          console.log(abils)
-        }}
-      </h1> */}
-      {ability &&
-        ability.map((abilityObject) => (
-          <h2
-            onClick={() => {
-              console.log(abilityObject.ability.name);
-              setDescriptions(true);
-              console.log(abilityObject);
-              ability.map(async (abils) => {
-                // return getAbilities(abils.ability.name);
-                console.log(abils.ability.name);
-                try {
-                  const jj = await API.getAbility(abils.ability.name);
-                  console.log(jj);
-                  console.log(jj.data.effect_entries[1].effect);
-                  return setAbilitee(jj.data.effect_entries[1].effect);
-                } catch {
-                  console.log("Fuck off");
-                }
-              });
-              // console.log(ability[0].ability.name);
-              // getAbilities(ability[0].ability.name && ability[1].ability.name);
-            }}
-          >
-            {abilityObject.ability.name}
-            <br />
-            {descriptions ? (
-              <AbilityDescription
-                abilities={abilityObject.ability.name}
-                otherAbilz={abilitee}
-              />
-            ) : (
-              <p>Click an ability for more details</p>
-            )}
-          </h2>
-        ))}
-      {/* {abilitee} */}
+        Dectecting:{" "}
+        {pokename ? (
+          pokename.charAt(0).toUpperCase() + pokename.slice(1)
+        ) : (
+          <CircularProgress />
+        )}
+      </h1>
+      <p>{poketype && poketype.map((typez) => <b>{typez.type.name}</b>)}</p>
+      <h2>
+        {pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
+      </h2>
+      <Paper className={classes.abilities}>
+        {ability &&
+          ability.map((abilityObject) => (
+            <p
+              onClick={() => {
+                console.log(abilityObject.ability.name);
+                setDescriptions(true);
+                console.log(abilityObject);
+                ability.map(async (abils) => {
+                  // return getAbilities(abils.ability.name);
+                  console.log(abils.ability.name);
+                  try {
+                    const jj = await API.getAbility(abils.ability.name);
+                    console.log(jj);
+                    console.log(jj.data.effect_entries[1].effect);
+                    return setAbilitee(jj.data.effect_entries[1].effect);
+                  } catch {
+                    console.log("Fuck off");
+                  }
+                });
+              }}
+            >
+              {abilityObject.ability.name}
+              <br />
+              {descriptions ? (
+                <AbilityDescription
+                  abilities={abilityObject.ability.name}
+                  otherAbilz={abilitee}
+                />
+              ) : (
+                <p>Click an ability for more details</p>
+              )}
+            </p>
+          ))}
+      </Paper>
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
       {ability ? (
@@ -129,7 +115,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
             );
           })}
       </tr>
-    </>
+    </div>
   );
 };
 

@@ -25,9 +25,9 @@ function App() {
     setDetail(x);
     setSprites(detail.data.sprites);
     setAbility(detail.data.abilities);
-    console.log(detail.data.types);
+    // console.log(detail.data.types);
     setTypes(detail.data.types);
-    console.log(types);
+
     setBaseStat(detail.data.stats);
   }
 
@@ -49,11 +49,12 @@ function App() {
   return (
     <>
       <PokeSearch getPokemon={getPokeDetails} style />
+
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-        <ul className="list-group mb-4 text-center">
+        <ul>
           {currentPosts.map((post) => (
-            <h6
-              href="/#"
+            <li
+              // href="/#"
               posts={currentPosts}
               onClick={() => {
                 getPokeDetails(post.name);
@@ -65,7 +66,7 @@ function App() {
               className="list-group-item"
             >
               {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
-            </h6>
+            </li>
           ))}
 
           <Paginations
