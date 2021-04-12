@@ -69,13 +69,14 @@ function App() {
             </li>
           ))}
 
-          <Paginations
+       
+        </ul>
+        <Paginations
             paginate={paginate}
             totalPosts={pokemon.length}
             postsPerPage={postsPerPage}
+            currentPage={currentPage}
           />
-        </ul>
-
         <div>
           {showPokemon ? (
             <>

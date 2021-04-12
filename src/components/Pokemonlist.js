@@ -40,7 +40,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
       </h1>
       <p>{poketype && poketype.map((typez) => <b>{typez.type.name}</b>)}</p>
       <h2>
-        {pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
+        {pokename && pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
       </h2>
       <Paper className={classes.abilities}>
         {ability &&

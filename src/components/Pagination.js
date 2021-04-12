@@ -10,9 +10,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
+const Paginations = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const classes = useStyles();
   const pageNumbers = [];
+  const handleChangePage = (event, newPage) => {
+    paginate(newPage)
+  }
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -20,7 +23,9 @@ const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
 
   return (
     <nav>
-      <ul
+      <Pagination
+      onChange={handleChangePage}
+      count={10} variant="outlined" shape="rounded"
         className="pagination"
         style={{
           justifyContent: "space-evenly",
@@ -35,7 +40,7 @@ const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
             </a>
           </p>
         ))}
-      </ul>
+      </Pagination>
     </nav>
   );
 };
