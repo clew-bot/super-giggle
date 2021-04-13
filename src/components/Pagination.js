@@ -24,22 +24,20 @@ const Paginations = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   return (
     <nav>
       <Pagination
+      initialPage={1}
+      currentPage={currentPage}
       onChange={handleChangePage}
-      count={10} variant="outlined" shape="rounded"
+      count={7} variant="outlined" shape="rounded"
         className="pagination"
-        style={{
-          justifyContent: "space-evenly",
-          border: "solid 2px black",
-          fontFamily: "helveltica",
-        }}
+        
       >
-        {pageNumbers.map((number) => (
+        {/* {pageNumbers.map((number) => (
           <p key={number} className="page-item">
             <a onClick={() => paginate(number)} href="!#" className="page-link">
               {number}
             </a>
           </p>
-        ))}
+        ))} */}
       </Pagination>
     </nav>
   );

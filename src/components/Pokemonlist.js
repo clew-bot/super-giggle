@@ -7,6 +7,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,6 +30,14 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
   const classes = useStyles();
   const [abilitee, setAbilitee] = useState([]);
   const [descriptions, setDescriptions] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+
+  const loadingZone = () => {
+    setTimeout(() => {
+      setLoading(!loading)
+    }, 2000)
+
+  };
 
   return (
     <div>
@@ -77,18 +88,25 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
             </p>
           ))}
       </Paper>
+    
+    
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
+    
+     
       {ability ? (
+        <>
         <img
           src={sprite.other.dream_world.front_default}
           alt="dream world sprite"
         />
-      ) : (
-        <p>Loading...</p>
-      )}
+       
       <img src={sprite.front_shiny} alt="front shiny" />
       <img src={sprite.back_shiny} alt="back shiny" />
+      </>
+     ) : (
+        <p>Loading...</p>
+      )}
       <br />
       <h1>This Pokemon has the following base stats:</h1>
       <tr
