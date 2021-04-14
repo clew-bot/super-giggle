@@ -7,6 +7,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -24,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginBottom: "100px",
   },
+  detector: {
+    display: "flex",
+    justifyContent: "center",
+  }
 }));
 
 const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
@@ -41,22 +46,26 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
 
   return (
     <div>
+       <Grid container spacing={3}>
+       <Grid item xs={12}>
       <h1>
-        Dectecting:{" "}
+        <Paper className={classes.detector}>Dectecting:	&nbsp; 
         {pokename ? (
           pokename.charAt(0).toUpperCase() + pokename.slice(1)
         ) : (
           <CircularProgress />
         )}
+        </Paper>
       </h1>
+      </Grid>
       <p>{poketype && poketype.map((typez) => <b>{typez.type.name}</b>)}</p>
       <h2>
         {pokename && pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
       </h2>
-      <Paper className={classes.abilities}>
+      <p className={classes.abilities}>
         {ability &&
           ability.map((abilityObject) => (
-            <p
+            <Paper
               onClick={() => {
                 console.log(abilityObject.ability.name);
                 setDescriptions(true);
@@ -85,9 +94,9 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
               ) : (
                 <p>Click an ability for more details</p>
               )}
-            </p>
+            </Paper>
           ))}
-      </Paper>
+      </p>
     
     
       <img src={sprite.front_default} alt="front default" />
@@ -133,6 +142,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
             );
           })}
       </tr>
+      </Grid>
     </div>
   );
 };
