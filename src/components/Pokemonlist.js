@@ -68,6 +68,10 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
        
       <img src={sprite.front_shiny} alt="front shiny" />
       <img src={sprite.back_shiny} alt="back shiny" />
+       
+      <img src={sprite.front_default} alt="front default" />
+      <img src={sprite.back_default} alt="back default" />
+    
       </>
      ) : (
         <p>Loading...</p>
@@ -76,7 +80,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
       </h1>
       </Grid>
       <Grid item xs={3} lg={3}></Grid>
-      <p>{poketype && poketype.map((typez) => <b>{typez.type.name}</b>)}</p>
+      <p>{poketype && poketype.map((typez) => <b>{typez.type.name + " "}</b>)}</p>
       <h2>
         {pokename && pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
       </h2>
@@ -116,10 +120,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
           ))}
       </p>
     
-    
-      <img src={sprite.front_default} alt="front default" />
-      <img src={sprite.back_default} alt="back default" />
-    
+   
      
      
       <br />
