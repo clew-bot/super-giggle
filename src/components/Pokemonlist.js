@@ -37,17 +37,18 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
   const [descriptions, setDescriptions] = useState(false);
   const [ loading, setLoading ] = useState(false);
 
-  const loadingZone = () => {
-    setTimeout(() => {
-      setLoading(!loading)
-    }, 2000)
+  // const loadingZone = () => {
+  //   setTimeout(() => {
+  //     setLoading(!loading)
+  //   }, 2000)
 
-  };
+  // };
 
   return (
     <div>
        <Grid container spacing={3}>
-       <Grid item xs={12}>
+       <Grid item xs={3} lg={3}></Grid>
+       <Grid item xs={6} lg={6}>
       <h1>
         <Paper className={classes.detector}>Dectecting:	&nbsp; 
         {pokename ? (
@@ -56,8 +57,25 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
           <CircularProgress />
         )}
         </Paper>
+        <br/>
+        <Paper>
+        {ability ? (
+        <>
+        <img
+          src={sprite.other.dream_world.front_default}
+          alt="dream world sprite"
+        />
+       
+      <img src={sprite.front_shiny} alt="front shiny" />
+      <img src={sprite.back_shiny} alt="back shiny" />
+      </>
+     ) : (
+        <p>Loading...</p>
+      )}
+      </Paper>
       </h1>
       </Grid>
+      <Grid item xs={3} lg={3}></Grid>
       <p>{poketype && poketype.map((typez) => <b>{typez.type.name}</b>)}</p>
       <h2>
         {pokename && pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
@@ -79,7 +97,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
                     console.log(jj.data.effect_entries[1].effect);
                     return setAbilitee(jj.data.effect_entries[1].effect);
                   } catch {
-                    console.log("Fuck off");
+                    console.log("oops")
                   }
                 });
               }}
@@ -103,19 +121,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
       <img src={sprite.back_default} alt="back default" />
     
      
-      {ability ? (
-        <>
-        <img
-          src={sprite.other.dream_world.front_default}
-          alt="dream world sprite"
-        />
-       
-      <img src={sprite.front_shiny} alt="front shiny" />
-      <img src={sprite.back_shiny} alt="back shiny" />
-      </>
-     ) : (
-        <p>Loading...</p>
-      )}
+     
       <br />
       <h1>This Pokemon has the following base stats:</h1>
       <tr
