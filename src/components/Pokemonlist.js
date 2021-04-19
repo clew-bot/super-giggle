@@ -105,6 +105,8 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
       </Grid>
       
       <Grid item xs={2} lg={2}></Grid>
+
+      <Grid item xs={12} lg={12}>
       <p className={classes.abilities}>
         {ability &&
           ability.map((abilityObject) => (
@@ -126,9 +128,10 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
                   }
                 });
               }}
-            ><h1>
+            ><h1 className={classes.detector}>
               {abilityObject.ability.name}</h1>
               <br />
+              <div className={classes.abilities}>
               {descriptions ? (
                 <AbilityDescription
                   abilities={abilityObject.ability.name}
@@ -137,10 +140,11 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
               ) : (
                 <p>Click an ability for more details</p>
               )}
+              </div>
             </Paper>
           ))}
       </p>
-    
+    </Grid>
    
      
      

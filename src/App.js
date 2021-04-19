@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import API from "./components/API";
 import Paginations from "./components/Pagination";
 import PokeSearch from "./components/PokeSearch";
-
+import Grid from '@material-ui/core/Grid';
 
 function App() {
   const [detail, setDetail] = useState([]);
@@ -53,9 +53,10 @@ function App() {
   return (
     <>
       
-
-      <div style={{ display: "", flexDirection: "row-reverse" }}>
-        <ul>
+    
+      <div >
+      <Grid item xs={12} lg={12}>
+        <ul style={{display: "flex", justifyContent: "center", marginTop: "40px"}}>
     
       <Paginations
             paginate={paginate}
@@ -65,10 +66,13 @@ function App() {
       />
      
         </ul>
-     
+        </Grid>
+   
         <div>
         {currentPosts.map((post) => (
+               <Grid item xs={12} lg={12}>
             <p
+                style={{display: "flex", justifyContent: "center", marginTop: "40px"}}
                 onClick={() => {
                 getPokeDetails(post.name);
                 setDetail(
@@ -79,8 +83,9 @@ function App() {
             >
               {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
             </p>
+            </Grid>
           ))}
-
+          
           {showPokemon ? (
             <>
             <PokeSearch getPokemon={getPokeDetails} style />
@@ -99,6 +104,7 @@ function App() {
         </div>
      
       </div>
+      
     </>
   );
 }
