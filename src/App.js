@@ -27,6 +27,7 @@ function App() {
     const detail = await API.getPokeDetails(x);
     setDetail(x);
     setSprites(detail.data.sprites);
+    
     setAbility(detail.data.abilities);
     setTypes(detail.data.types);
     setBaseStat(detail.data.stats);
@@ -55,13 +56,14 @@ function App() {
 
       <div style={{ display: "", flexDirection: "row-reverse" }}>
         <ul>
-          
+    
       <Paginations
             paginate={paginate}
             totalPosts={pokemon.length}
             postsPerPage={postsPerPage}
             // currentPage={currentPage}
       />
+     
         </ul>
      
         <div>
@@ -95,6 +97,7 @@ function App() {
             <iframe title="pokemon" src="https://giphy.com/embed/iBANmdIlMNJVC" width="480" height="100" frameBorder="0" allowFullScreen></iframe>
           </>)}
         </div>
+     
       </div>
     </>
   );

@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
   detector: {
     display: "flex",
     justifyContent: "center",
+  },
+  pokemonType: {
+  
+    display: "flex",
+    justifyContent: "center",
   }
 }));
 
@@ -80,10 +85,26 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
       </h1>
       </Grid>
       <Grid item xs={3} lg={3}></Grid>
-      <p>{poketype && poketype.map((typez) => <b>{typez.type.name + " "}</b>)}</p>
-      <h2>
+      <Grid item xs={3} lg={3}></Grid>
+      <Grid item xs={6} lg={6}>
+      <Paper>
+      <p>{poketype && poketype.map((typez) => <b className={classes.pokemonType}>{typez.type.name + "   "}</b>)}</p>
+      </Paper>
+      </Grid>
+      <Grid item xs={3} lg={3}></Grid>
+
+
+
+      <Grid item xs={2} lg={2}></Grid>
+      <Grid item xs={8} lg={8} xl={8}>
+        <Paper>
+      <h2 className={classes.pokemonType}>
         {pokename && pokename.charAt(0).toUpperCase() + pokename.slice(1)}'s abilities:
       </h2>
+      </Paper>
+      </Grid>
+      
+      <Grid item xs={2} lg={2}></Grid>
       <p className={classes.abilities}>
         {ability &&
           ability.map((abilityObject) => (
@@ -105,8 +126,8 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
                   }
                 });
               }}
-            >
-              {abilityObject.ability.name}
+            ><h1>
+              {abilityObject.ability.name}</h1>
               <br />
               {descriptions ? (
                 <AbilityDescription
@@ -124,8 +145,10 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
      
      
       <br />
+      <Grid item xs={12} lg={12}>
       <h1>This Pokemon has the following base stats:</h1>
-      <tr
+      </Grid>
+      <h1
         style={{
           display: "flex",
           flexDirection: "row",
@@ -138,7 +161,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
           baseStat.map((stats) => {
             return (
               <>
-                <td key={stats.stat.name}>{stats.stat.name}</td>
+                <p key={stats.stat.name}>{stats.stat.name}</p>
 
                 <CircularProgressbar
                   maxValue={255}
@@ -148,7 +171,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
               </>
             );
           })}
-      </tr>
+      </h1>
       </Grid>
     </div>
   );

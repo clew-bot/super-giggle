@@ -24,8 +24,8 @@ const Paginations = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   return (
     <nav>
       <Pagination
-      initialPage={1}
-      currentPage={currentPage}
+    
+
       onChange={handleChangePage}
       count={7} variant="outlined" shape="rounded"
         className="pagination"
