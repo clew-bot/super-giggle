@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button"
+
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
@@ -39,7 +39,7 @@ const PokeSearch = ({ getPokemon }) => {
         name="pokeName"
         placeholder="Search for a Pokemon . . ."
       />
-      <Button className={classes.buttonStyle} color="primary" onClick={handleFormSubmit}>Get Pokemon</Button>
+      <button className={classes.buttonStyle} color="primary" onClick={handleFormSubmit}>Get Pokemon</button>
     </form>
     </Grid>
     </Grid>

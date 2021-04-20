@@ -10,11 +10,15 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       marginTop: theme.spacing(2),
     },
-    pagin: {
-      display: "flex",
-      justifyContent: "center",
-      border: "solid 2px black"
-    },
+    
+    
+  },
+  pagin: {
+    display: "flex",
+    justifyContent: "center",
+    border: "solid .5px white",
+    padding: "5px"
+   
   },
 }));
 
@@ -34,8 +38,10 @@ const Paginations = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     <nav >
         
       <Pagination
+    
     className={classes.pagin}
-  
+    color="primary"
+
       onChange={handleChangePage}
       count={7} variant="outlined" shape="rounded"
        
