@@ -4,9 +4,7 @@ const AbilityDescription = ({ abilities, otherAbilz }) => {
   const [description, setDescription] = useState();
   console.log(otherAbilz);
   async function getAbilityDescription(abilities) {
-    if (abilities.includes("-")){
-      console.log("I don't like hyphens")
-    }
+   
     const res = await API.getAbility(abilities);
     setDescription(res.data.effect_entries[1].effect);
   }

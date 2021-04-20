@@ -31,7 +31,7 @@ const PokeSearch = ({ getPokemon }) => {
   }
   return (
     <Grid container spacing={3}>
-    <Grid item xs={3} lg={12}>
+    <Grid item xs={12} lg={12}>
     <form className={classes.searchBar}> 
       <TextField
       variant="outlined"

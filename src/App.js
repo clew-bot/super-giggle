@@ -72,7 +72,7 @@ function App() {
         {currentPosts.map((post) => (
                <Grid item xs={12} lg={12}>
             <p
-                style={{display: "flex", justifyContent: "center", marginTop: "40px"}}
+                style={{display: "flex", justifyContent: "center", marginTop: "10x"}}
                 onClick={() => {
                 getPokeDetails(post.name);
                 setDetail(

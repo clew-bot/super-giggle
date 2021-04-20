@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  images: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   pokemonType: {
   
     display: "flex",
@@ -52,8 +57,8 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
   return (
     <div>
        <Grid container spacing={3}>
-       <Grid item xs={3} lg={3}></Grid>
-       <Grid item xs={6} lg={6}>
+       <Grid item xs={0} lg={3}></Grid>
+       <Grid item xs={12} sm={12} lg={6}>
       <h1>
         <Paper className={classes.detector}>Dectecting:	&nbsp; 
         {pokename ? (
@@ -65,26 +70,26 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
         <br/>
         <Paper>
         {ability ? (
-        <>
-        <img
-          src={sprite.other.dream_world.front_default}
-          alt="dream world sprite"
-        />
+        <div className={classes.images}>
+     
        
       <img src={sprite.front_shiny} alt="front shiny" />
       <img src={sprite.back_shiny} alt="back shiny" />
-       
+      <img
+          src={sprite.other.dream_world.front_default}
+          alt="dream world sprite"
+        />
       <img src={sprite.front_default} alt="front default" />
       <img src={sprite.back_default} alt="back default" />
     
-      </>
+      </div>
      ) : (
         <p>Loading...</p>
       )}
       </Paper>
       </h1>
       </Grid>
-      <Grid item xs={3} lg={3}></Grid>
+      <Grid item xs={0} lg={3}></Grid>
       <Grid item xs={3} lg={3}></Grid>
       <Grid item xs={6} lg={6}>
       <Paper>
@@ -129,7 +134,7 @@ const PokemonList = ({ sprite, pokename, ability, baseStat, poketype }) => {
                 });
               }}
             ><h1 className={classes.detector}>
-              {abilityObject.ability.name}</h1>
+              {abilityObject.ability.name.charAt(0).toUpperCase() + abilityObject.ability.name.slice(1)}</h1>
               <br />
               <div className={classes.abilities}>
               {descriptions ? (
